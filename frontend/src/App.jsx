@@ -1,9 +1,16 @@
+import { signInWithPopup } from 'firebase/auth'
 import React from 'react'
+import { auth, googleProvider } from '../firebase'
 
 const App = () => {
+  const handleLogin= async ()=>{
+    const data=await signInWithPopup(auth,googleProvider)
+    const token = await data.user.getIdToken()
+  }
+
   return (
     <div>
-      <button>continue with google</button>
+      <button onClick={handleLogin}>continue with google</button>
     </div>
   )
 }
